@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 ReactDOM.render(
   <Router>
+    <CssBaseline />
     <App />
   </Router>,
   document.getElementById('root')

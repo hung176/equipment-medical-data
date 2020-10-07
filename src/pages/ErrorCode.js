@@ -1,10 +1,10 @@
 import React from "react";
+import TabUnits from "../component/TabUnits";
 
 function ErrorCode() {
+
   return (
-    <div>
-      This is error code page.
-    </div>
+    <TabUnits />
   )
 };
 

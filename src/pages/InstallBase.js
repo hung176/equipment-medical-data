@@ -6,6 +6,6 @@ function InstallBase() {
       This is install base page.
     </div>
   )
-};
+}
 
 export default InstallBase;
