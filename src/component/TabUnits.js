@@ -8,6 +8,7 @@ import Savina300Icon from "../assets/savina300.png";
 import CarinaIcon from "../assets/carina.png";
 import Evita4Icon from "../assets/evita4.png";
 import EvitaV300Icon from "../assets/evitav300.png";
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -18,7 +19,8 @@ const useStyles = makeStyles({
   // }
 });
 
-export default function TabUnits() {
+function TabUnits(props) {
+  const { history } = props;
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
@@ -44,7 +46,7 @@ export default function TabUnits() {
       iconPath: Evita4Icon,
     },
     {
-      nameUnit: "Evita V300",
+      nameUnit: "EvitaV300",
       iconPath: EvitaV300Icon,
     },
   ];
@@ -65,9 +67,15 @@ export default function TabUnits() {
             icon={<img src={tab.iconPath} alt={tab.nameUnit} />}
             label={tab.nameUnit}
             key={tab.nameUnit}
+            onClick={() => history.push({
+              pathname: `/errorcodes/${tab.nameUnit}`,
+              state: `${tab.nameUnit}`
+            })}
           />
         ))};
       </Tabs>
     </Paper>
   );
 }
+
+export default withRouter(TabUnits);

@@ -18,9 +18,10 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   title: {
-    [theme.breakpoints.down("xs")]: {
-      flexGrow: 1
-    }
+    // [theme.breakpoints.down("xs")]: {
+    //   flexGrow: 1
+    // }
+    flexGrow: 1
   },
   toolBar: {
     display: "flex",

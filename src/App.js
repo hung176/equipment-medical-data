@@ -13,10 +13,11 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact from="/" render={props => <Home {...props} />} />
-        <Route exact from="/documents" render={props => <Documents {...props} />} />
+        <Route exact path="/documents" render={props => <Documents {...props} />} />
         <Route exact path="/installbase" render={props => <InstallBase {...props} />} />
-        <Route exact path="/errorcodes" render={props => <ErrorCode {...props} />} />
+        <Route path="/errorcodes" render={props => <ErrorCode {...props} />} />
         <Route exact path="/passwords" render={props => <Password {...props} />} />
+        {/* <Redirect exact from="/errorcodes" to="/errorcodes/Savina" /> */}
       </Switch>
     </>
   );
