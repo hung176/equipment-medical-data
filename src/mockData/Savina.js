@@ -5,7 +5,7 @@ export default [
     description: "Device reset triggered: SW error",
     error: "Device reset triggered: SW error. The error message may be caused by the software, hardware (Control PCB) or by strong electromagnetic interference (e.g. from cell/mobile phones).",
     causePosible: "Device reset triggered: SW error.The error message may be caused by the software, hardware (Control PCB) or by strong electromagnetic interference (e.g. from cell/mobile phones).",
-    remedies: "1. Switch device off and on again. If the error does not reoccur, the device can be restored to normal use. If the error occurs several times: 2. Replace the Control PCB."
+    remedies: "1. Switch device off and on again. If the error does not reoccur, the device can be restored to normal use. \nIf the error occurs several times: 2. Replace the Control PCB."
   },
   {
     errorcode: "01.0000",
@@ -79,4 +79,29 @@ export default [
     causePosible: "Data retention (EEPROM), checksum error: Bypass valve.",
     remedies: "1. Resetting of calibration class for bypass valve in Service Mode, Test 15.If the error occurs again: 2. Replace Control PCB.",
   },
+  {
+    errorcode: "01.0302",
+    assembly: "Festspeicher Masterprozessor",
+    description: "Data retention: Checksum error",
+    error: "Data retention (EEPROM), checksum error: Expiratory valve.",
+    causePosible: "Data retention (EEPROM), checksum error: Expiratory valve.",
+    remedies: "1. Resetting of calibration class for expiratory valve in DrägerService Mode Test 15.If the error occurs again: 2. Replace Control PCB.",
+  },
+  {
+    errorcode: "01.0303",
+    assembly: "Festspeicher Masterprozessor",
+    description: "Data retention checksum error",
+    error: "Data retention (EEPROM), checksum error: Blower start speed (not used for the time being).",
+    causePosible: "Data retention (EEPROM), checksum error: Blower start speed (not used for the time being).",
+    remedies: "1. Switch device off and on again. If the error does not reoccur, the device can be restored to normal use. If the error occurs several times: 2. Replace Control PCB.",
+  },
+  {
+    errorcode: "01.0304",
+    assembly: "Festspeicher Masterprozessor",
+    description: "Data retention checksum error",
+    error: "Data retention (EEPROM), checksum error: Fan start speed (not used for the time being).",
+    causePosible: "Data retention (EEPROM), checksum error: Fan start speed (not used for the time being).",
+    remedies: "1. Switch device off and on again. If the error does not reoccur, the device can be restored to normal use. If the error occurs several times: 2. Replace Control PCB.",
+  },
+  
 ]

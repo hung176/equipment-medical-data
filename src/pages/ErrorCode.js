@@ -6,8 +6,9 @@ import Evita4ErrorCode from "../mockData/Evita4";
 
 function ErrorCode(props) {
   const { location } = props;
-  const { state } = location;
-  const isUnits = ["Savina", "Savina300", "Evita4", "Carina", "EvitaV300"].includes(state);
+  const { pathname } = location;
+  const unitName = pathname.slice(12);
+  const isUnits = ["Savina", "Savina300", "Evita4", "Carina", "EvitaV300"].includes(unitName);
 
   const mockData = {
     Savina: SavinaErrorCode,
@@ -15,7 +16,7 @@ function ErrorCode(props) {
   };
 
   const columns = [
-    { title: 'Error Code', field: 'errorcode' },
+    { title: 'Error Code', field: 'errorcode', width: 150, cellStyle: { color: "red" }},
     { title: 'Assembly', field: 'assembly' },
     { title: 'Description', field: 'description' },
     { title: 'Cause Posible', field: 'causePosible' },
@@ -25,7 +26,8 @@ function ErrorCode(props) {
   return (
     <>
       <TabUnits />
-      {isUnits ? (
+      {/* {isUnits ? ( */}
+      {unitName && isUnits ? (
         <MaterialTable
           components={{
             Toolbar: props => (
@@ -34,19 +36,23 @@ function ErrorCode(props) {
                 </div>
             )
           }}
-          title={`${state} Error Code`}
+          title={`${unitName} Error Code`}
           columns={columns}
-          data={mockData[state]}
+          // data={mockData[state]}
+          data={mockData[unitName]}
           options={{
             filtering: true,
-            search: false,
             rowStyle: {
-              backgroundColor: '#eee',
-            }
+              backgroundColor: '#fff',
+            },
+            headerStyle: {
+              color: "#3f51b5",
+              fontSize: "18px",
+            },
           }}
         />
       ) : (
-        <div style={{ textAlign: "center", fontSize: "20px", marginTop: "50px" }}>Click to one Unit</div>
+        <div style={{ textAlign: "center", fontSize: "20px", marginTop: "50px" }}>wrong URL path or not still select a model. Please click a model</div>
       )}
       
     </>
