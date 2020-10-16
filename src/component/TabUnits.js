@@ -62,16 +62,16 @@ function TabUnits(props) {
         aria-label="icon label tabs example"
       >
         {tabIcons.map(tab => (
-          <Tab
-            // className={classes.tabUnit}
-            icon={<img src={tab.iconPath} alt={tab.nameUnit} />}
-            label={tab.nameUnit}
-            key={tab.nameUnit}
-            onClick={() => history.push({
-              pathname: `/errorcodes/${tab.nameUnit}`,
-              state: `${tab.nameUnit}`
-            })}
-          />
+            <Tab
+              // className={classes.tabUnit}
+              icon={<img src={tab.iconPath} alt={tab.nameUnit} />}
+              label={tab.nameUnit}
+              key={tab.nameUnit}
+              onClick={() => history.push({
+                pathname: `/errorcodes/${tab.nameUnit}`,
+                state: `${tab.nameUnit}`
+              })}
+            />
         ))};
       </Tabs>
     </Paper>
