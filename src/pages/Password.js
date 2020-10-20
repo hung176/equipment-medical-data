@@ -7,6 +7,7 @@ import a500 from "../assets/a500.jpg";
 import vn500 from "../assets/vn500.jpg";
 import primus from "../assets/primus.jpg";
 import v300 from "../assets/v300.jpg";
+import m540 from "../assets/m540.webp";
 
 const passwordData = [
   {
@@ -39,13 +40,18 @@ const passwordData = [
     imageURL: v300,
     password: ['service: 8400', 'user: 0000']
   },
+  {
+    unitName: 'M540',
+    imageURL: m540,
+    password: ['service: 8550', 'biomed: 4756']
+  },
 ];
 
 const useStyles = makeStyles({
   gridContainer: {
     paddingLeft: "16px",
     paddingTop: "30px",
-    paddingRight: "16px"
+    paddingRight: "16px",
   }
 })
 
@@ -54,7 +60,7 @@ function Password() {
   return (
     <Grid container spacing={2} className={classes.gridContainer}>
       {passwordData.map(unit => (
-        <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Grid key={unit.unitName} item xs={12} sm={6} md={4} lg={3}>
           <PasswordCard unitPassword = {unit}/>
         </Grid>
       ))}

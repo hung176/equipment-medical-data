@@ -9,6 +9,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withRouter } from 'react-router-dom';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,11 +19,12 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2)
   },
-  title: {
+  logoutIcon: {
     // [theme.breakpoints.down("xs")]: {
     //   flexGrow: 1
     // }
-    flexGrow: 1
+    display: "flex",
+    alignItems: "center"
   },
   toolBar: {
     display: "flex",
@@ -34,10 +37,7 @@ const useStyles = makeStyles(theme => ({
   headerOptionItems: {
     marginRight: "20px",
     padding: "5px",
-    cursor: "pointer",
-    "&:hover": {
-      borderBottom: "3px solid white",
-    },
+    cursor: "pointer"
   }
 
 }));
@@ -90,9 +90,11 @@ const NavBar = (props) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar className={classes.toolBar}>
-            <Typography variant="h6" className={classes.title}>
-              Support Draeger
-            </Typography>
+          <div className={classes.logoutIcon}>
+            <PowerSettingsNewRoundedIcon fontSize="large" />
+            <Typography>Account</Typography>
+          </div>
+         
           {isMobile ? (
             <>
               <IconButton

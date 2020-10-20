@@ -59,7 +59,7 @@ export default function RecipeReviewCard({ unitPassword }) {
     <CardMedia
       className={classes.media}
       image={imageURL}
-      title="atlan"
+      title={unitName}
     />
   
     <CardActions disableSpacing>
@@ -84,7 +84,7 @@ export default function RecipeReviewCard({ unitPassword }) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent className={classes.buttonPass}>
           {password.map(pass => (
-            <Button size="small" variant="contained" color="primary">
+            <Button size="small" variant="contained" color="primary" key={pass}>
               {pass}
             </Button>
           ))}
