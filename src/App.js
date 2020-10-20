@@ -13,28 +13,28 @@ import PrivateRoute from "./PrivateRoute";
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <Switch>
-        <PrivateRoute exact path="/">
+        <PrivateRoute exact path="/" layout={NavBar}>
           <Home />
         </PrivateRoute>
-        <PrivateRoute exact path="/documents">
+
+        <PrivateRoute exact path="/documents" layout={NavBar}>
           <Documents />
         </PrivateRoute>
 
-        <PrivateRoute exact path="/installbase">
+        <PrivateRoute exact path="/installbase" layout={NavBar}>
           <InstallBase />
         </PrivateRoute>
 
-        <PrivateRoute exact path="/errorcodes">
+        <PrivateRoute exact path="/errorcodes" layout={NavBar}>
           <ErrorCode />
         </PrivateRoute>
 
-        <PrivateRoute exact path="/errorcodes/:unitName">
+        <PrivateRoute exact path="/errorcodes/:unitName" layout={NavBar}>
           <ErrorCodeUnit />
         </PrivateRoute>
 
-        <PrivateRoute exact path="/passwords">
+        <PrivateRoute exact path="/passwords" layout={NavBar}>
           <Password />
         </PrivateRoute>
 

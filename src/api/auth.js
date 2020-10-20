@@ -16,7 +16,6 @@ export default function authenticate(form) {
 
   return new Promise((resolve, reject) => {
     const user = allUser.find(user => user.username === form.username && user.password === form.password);
-    console.log(user)
     setTimeout(() => {
       if(user) {
         const { id, username, name } = user;
