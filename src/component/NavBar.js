@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withRouter } from 'react-router-dom';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
+import UserAvatar from "../component/UserAvatar";
 import { logout, getAuth } from "../store";
 
 
@@ -46,8 +46,7 @@ const useStyles = makeStyles(theme => ({
 
 const NavBar = (props) => {
   const dispatch = useDispatch();
-  const state = useSelector(getAuth);
-  const { user: {name} } = state;
+  const { user: { name } } = useSelector(getAuth);
 
   const { history } = props;
   const classes = useStyles();
@@ -71,7 +70,6 @@ const NavBar = (props) => {
 
   const handleLogout = () => {
     dispatch(logout());
-    console.log(state)
   }
 
   const menuItems = [
@@ -103,10 +101,8 @@ const NavBar = (props) => {
         <Toolbar className={classes.toolBar}>
           <div
             className={classes.logoutIcon}
-            onClick={handleLogout}
           >
-            <PowerSettingsNewRoundedIcon fontSize="large" />
-            <Typography>{name}</Typography>
+            <UserAvatar handleLogout={handleLogout} name={name}/>
           </div>
          
           {isMobile ? (
