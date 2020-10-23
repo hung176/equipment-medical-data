@@ -1,5 +1,7 @@
-import React from 'react';
-// import { useLocation, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { login, getAuth } from "../store";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +14,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Progress from "../component/Progress";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,7 +39,24 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
 
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const [formSubmit, setFormSubmit] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(formSubmit));
+  };
+
+  const redirectUrl = location.state ? location.state.from.pathname : "/";
+  const { isAuthenticated, isRequest, errorMsg } = useSelector(getAuth);
+
+  if(isAuthenticated) {
+    return <Redirect to={redirectUrl} />
+  }
+
   return (
+    
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -46,7 +66,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -57,6 +77,10 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(e) => setFormSubmit({
+              ...formSubmit,
+              username: e.target.value
+            })}
           />
           <TextField
             variant="outlined"
@@ -68,7 +92,12 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e) => setFormSubmit({
+              ...formSubmit,
+              password: e.target.value
+            })}
           />
+          <Typography color="error">{errorMsg}</Typography>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -80,7 +109,8 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            {isRequest && <Progress />}
+            {!isRequest && "Sign In"}
           </Button>
           <Grid container>
             <Grid item xs>

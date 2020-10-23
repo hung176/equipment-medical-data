@@ -1,8 +1,10 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { getAuth } from "./store";
 
 export default function PrivateRoute({ children, layout: Layout, ...rest }) {
-	const isAuthenticated = true;
+	const { isAuthenticated } = useSelector(getAuth);
 	return (
 		<Route
 			{...rest}

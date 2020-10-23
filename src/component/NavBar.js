@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,6 +11,7 @@ import Menu from '@material-ui/core/Menu';
 import { withRouter } from 'react-router-dom';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
+import { logout, getAuth } from "../store";
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,6 +45,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NavBar = (props) => {
+  const dispatch = useDispatch();
+  const state = useSelector(getAuth);
+  const { user: {name} } = state;
+
   const { history } = props;
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -62,6 +68,11 @@ const NavBar = (props) => {
   const handleOptionClick = pageURL => {
     history.push(pageURL);
   };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    console.log(state)
+  }
 
   const menuItems = [
     {
@@ -90,9 +101,12 @@ const NavBar = (props) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar className={classes.toolBar}>
-          <div className={classes.logoutIcon}>
+          <div
+            className={classes.logoutIcon}
+            onClick={handleLogout}
+          >
             <PowerSettingsNewRoundedIcon fontSize="large" />
-            <Typography>Account</Typography>
+            <Typography>{name}</Typography>
           </div>
          
           {isMobile ? (
@@ -122,7 +136,12 @@ const NavBar = (props) => {
                 onClose={() => setAnchorEl(null)}
               >
                 {menuItems.map((item, index) => (
-                  <MenuItem key={index} onClick={() => handleMenuClick(item.pageUrl)}>{item.menuTitle}</MenuItem>
+                  <MenuItem
+                    key={index}
+                    onClick={() => handleMenuClick(item.pageUrl)}
+                  >
+                    {item.menuTitle}
+                  </MenuItem>
                 ))}
               </Menu>
             </>

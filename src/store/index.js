@@ -1,8 +1,8 @@
-import { combineReducer } from "redux";
+import { combineReducers } from "redux";
 import { authReducer, namespace as authNameSpace } from "./auth";
 
-export const rootReducer = combineReducer({
+export const rootReducer = combineReducers({
   [authNameSpace]: authReducer
 });
 
-export { login, getAuth } from "./auth";
+export { login, logout, getAuth } from "./auth";

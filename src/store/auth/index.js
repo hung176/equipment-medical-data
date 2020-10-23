@@ -35,6 +35,14 @@ export function authReducer(state = initialState, action) {
         errorMsg: action.payload
       });
     
+    case LOGOUT_SUCCESS: 
+      return {
+        isRequest: false,
+        isAuthenticated: false,
+        user: {},
+        errorMsg: ''
+      }
+    
     default:
       return state;
   }
@@ -44,18 +52,23 @@ export function authReducer(state = initialState, action) {
 export const login = (form) => dispatch => {
   dispatch({ type: LOGIN_REQUEST });
 
-  authApi(form).then(response => {
-    dispatch({
+  authApi(form)
+    .then(response => 
+      dispatch({
       type: LOGIN_SUCCESS,
       payload: response
-    }).catch(error => {
+      })
+    )
+    .catch(error => 
       dispatch({
         type: LOGIN_FAIL,
         payload: error
       })
-    });
-  })
+    )
 };
 
+export const logout = () => ({
+    type: LOGOUT_SUCCESS
+})
 // selector
 export const getAuth = state => state[namespace]; 
