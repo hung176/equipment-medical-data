@@ -20,8 +20,7 @@ function ErrorCodeUnit({ match, history }) {
 
   const columns = [
     { title: 'Error Code', field: 'errorcode', width: 150, cellStyle: { color: "red" }},
-    { title: 'Assembly', field: 'assembly' },
-    { title: 'Description', field: 'description' },
+    { title: 'Error', field: 'error' },
     { title: 'Cause Posible', field: 'causePosible' },
     { title: 'Remedies', field: 'remedies' },
   ];
@@ -41,7 +40,7 @@ function ErrorCodeUnit({ match, history }) {
         columns={columns}
         data={mockData[unitName]}
         options={{
-          filtering: true,
+          filtering: false,
           rowStyle: {
             backgroundColor: '#fff',
           },
@@ -49,6 +48,8 @@ function ErrorCodeUnit({ match, history }) {
             color: "#3f51b5",
             fontSize: "18px",
           },
+          pageSize: 20,
+          pageSizeOptions: [20, 30, 50],
         }}
       />
     </>

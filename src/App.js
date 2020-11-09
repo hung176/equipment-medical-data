@@ -12,7 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Switch>
         <PrivateRoute exact path="/" layout={NavBar}>
           <Home />
