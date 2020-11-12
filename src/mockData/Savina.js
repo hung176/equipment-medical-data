@@ -221,5 +221,40 @@ export default [
     causePosible: "Data structure in EEPROM newer than installed SW.  Note: The latest software version should be installed.",
     remedies: "An older software has been installed by a download. This error message disappears when the device is switched off and back on."
   },
-  
+  {
+    errorcode: "02.0000",
+    error: "Memory test: Error in the internal RAM.  The error message may be caused by the software or hardware (Control PCB) or by strong electromagnetic fields, e.g. mobile phones!",
+    causePosible: "Memory test: Error in the internal RAM.  The error message may be caused by the software or hardware (Control PCB) or by strong electromagnetic fields, e.g. mobile phones!",
+    remedies: "- Switch device off and on again. If the error does not recur, the device can continue in operation.  If the error recurs repeatedly replace the Control PCB."
+  },
+  {
+    errorcode: "02.0100",
+    error: "Memory test: Error in the external RAM.  The error message may be caused by the software or the hardware (Control PCB) or by strong electromagnetic fields, e.g. mobile phones!",
+    causePosible: "Memory test: Error in the external RAM.  The error message may be caused by the software or the hardware (Control PCB) or by strong electromagnetic fields, e.g. mobile phones!",
+    remedies: "- Switch device off and on again. If the error does not recur, the device can continue in operation.  If the error recurs repeatedly replace the Control PCB."
+  },
+  {
+    errorcode: "03.????",
+    error: "Device reset triggered: SW error.  The error message may be caused by the software or the hardware (Control PCB) or by strong electromagnetic fields, e.g. mobile phones!",
+    causePosible: "Device reset triggered: SW error.  The error message may be caused by the software or the hardware (Control PCB) or by strong electromagnetic fields, e.g. mobile phones!",
+    remedies: "- Switch device off and on again. If the error does not recur, the device can continue in operation.  If the error recurs repeatedly replace the Control PCB."
+  },
+  {
+    errorcode: "04.????",
+    error: "Device reset triggered: Software error. The error message may be caused by the software, the hardware",
+    causePosible: "Device reset triggered: Software error. The error message may be caused by the software, the hardware",
+    remedies: "1) Start the device in service mode, set configuration #33" + "Manufactured after 2016" + "to" + "No also fo"
+  },
+  {
+    errorcode: "05.0000",
+    error: "Watchdog is defective.The error message may be caused by the software, hardware (Control PCB) or by strong electromagnetic interference (e.g. from cell/mobile phones).",
+    causePosible: "Watchdog is defective.The error message may be caused by the software, hardware (Control PCB) or by strong electromagnetic interference (e.g. from cell/mobile phones).",
+    remedies: "1) Switch device off and on again. If the error does not reoccur, the device can be restored to normal use.If error occurs several times 2) Replace the Control PCB."
+  },
+  {
+    errorcode: "06.????",
+    error: "Monitoring functions of operating system",
+    causePosible: "Timeout, incorrect ID, memory overflow or software error of the operating system.",
+    remedies: "1) Switch device off and on again. If the error does not recur, the device can be restored to normal use.2) Replace Control PCB."
+  },
 ]
