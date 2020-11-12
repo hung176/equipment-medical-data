@@ -64,9 +64,6 @@ function StyledTreeItem(props) {
           <Typography variant="body2" className={classes.labelText}>
             {labelText}
           </Typography>
-          <Typography variant="caption" color="inherit">
-            {labelInfo}
-          </Typography>
         </div>
       }
       style={{
@@ -89,10 +86,12 @@ const useStyles = makeStyles({
   root: {
     height: 264,
     flexGrow: 1,
+    width: 300
   },
 });
 
-export default function GmailTreeView() {
+export default function GmailTreeView({ nameUnitDoc }) {
+  const listUnitDoc = Object.keys(nameUnitDoc);
   const classes = useStyles();
 
   return (
@@ -103,16 +102,19 @@ export default function GmailTreeView() {
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
-      <StyledTreeItem nodeId="3" labelText="Categories" labelIcon={Label}>
-        <StyledTreeItem
-          nodeId="5"
-          labelText="Social"
-          labelIcon={FileCopyIcon}
-          labelInfo="90"
-          color="#1a73e8"
-          bgColor="#e8f0fe"
-        />
-      </StyledTreeItem>
+      {listUnitDoc.map(unit => (
+        <StyledTreeItem nodeId="3" labelText={unit} labelIcon={Label}>
+          {nameUnitDoc[unit].map(unitData => (
+            <StyledTreeItem
+              nodeId="5"
+              labelText={unitData.titleDoc}
+              labelIcon={FileCopyIcon}
+              color="#1a73e8"
+              bgColor="#e8f0fe"
+            />
+          ))}
+        </StyledTreeItem>
+      ))}
     </TreeView>
   );
 }
