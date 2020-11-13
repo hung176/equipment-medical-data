@@ -1,120 +1,44 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
-import Typography from '@material-ui/core/Typography';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import Label from '@material-ui/icons/Label';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-
-const useTreeItemStyles = makeStyles((theme) => ({
-  root: {
-    color: theme.palette.text.secondary,
-    '&:hover > $content': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    '&:focus > $content, &$selected > $content': {
-      backgroundColor: `var(--tree-view-bg-color, ${theme.palette.grey[400]})`,
-      color: 'var(--tree-view-color)',
-    },
-    '&:focus > $content $label, &:hover > $content $label, &$selected > $content $label': {
-      backgroundColor: 'transparent',
-    },
-  },
-  content: {
-    color: theme.palette.text.secondary,
-    borderTopRightRadius: theme.spacing(2),
-    borderBottomRightRadius: theme.spacing(2),
-    paddingRight: theme.spacing(1),
-    fontWeight: theme.typography.fontWeightMedium,
-    '$expanded > &': {
-      fontWeight: theme.typography.fontWeightRegular,
-    },
-  },
-  expanded: {},
-  selected: {},
-  label: {
-    fontWeight: 'inherit',
-    color: 'inherit',
-  },
-  labelRoot: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0.5, 0),
-  },
-  labelIcon: {
-    marginRight: theme.spacing(1),
-  },
-  labelText: {
-    fontWeight: 'inherit',
-    flexGrow: 1,
-  },
-}));
-
-function StyledTreeItem(props) {
-  const classes = useTreeItemStyles();
-  const { labelText, labelIcon: LabelIcon, labelInfo, color, bgColor, ...other } = props;
-
-  return (
-    <TreeItem
-      label={
-        <div className={classes.labelRoot}>
-          <LabelIcon color="inherit" className={classes.labelIcon} />
-          <Typography variant="body2" className={classes.labelText}>
-            {labelText}
-          </Typography>
-        </div>
-      }
-      style={{
-        '--tree-view-color': color,
-        '--tree-view-bg-color': bgColor,
-      }}
-      classes={{
-        root: classes.root,
-        content: classes.content,
-        expanded: classes.expanded,
-        selected: classes.selected,
-        label: classes.label,
-      }}
-      {...other}
-    />
-  );
-}
 
 const useStyles = makeStyles({
   root: {
-    height: 264,
+    marginBottom: 20,
     flexGrow: 1,
-    width: 300
+    width: 250,
   },
 });
 
-export default function GmailTreeView({ nameUnitDoc }) {
-  const listUnitDoc = Object.keys(nameUnitDoc);
+export default function MultiSelectTreeView({ nameUnitDoc, handleGetName }) {
   const classes = useStyles();
+  const listUnit = Object.keys(nameUnitDoc);
 
   return (
-    <TreeView
-      className={classes.root}
-      defaultExpanded={['3']}
-      defaultCollapseIcon={<ArrowDropDownIcon />}
-      defaultExpandIcon={<ArrowRightIcon />}
-      defaultEndIcon={<div style={{ width: 24 }} />}
-    >
-      {listUnitDoc.map(unit => (
-        <StyledTreeItem nodeId="3" labelText={unit} labelIcon={Label}>
-          {nameUnitDoc[unit].map(unitData => (
-            <StyledTreeItem
-              nodeId="5"
-              labelText={unitData.titleDoc}
-              labelIcon={FileCopyIcon}
-              color="#1a73e8"
-              bgColor="#e8f0fe"
-            />
-          ))}
-        </StyledTreeItem>
+    <div>
+      {listUnit.map(unit => (
+        <TreeView
+          className={classes.root}
+          defaultCollapseIcon={<ExpandMoreIcon />}
+          defaultExpandIcon={<ChevronRightIcon />}
+          multiSelect
+          key={unit}
+        >
+          <TreeItem nodeId="1" label={unit}>
+            {nameUnitDoc[unit].map(doc => (
+              <TreeItem
+                nodeId="2"
+                label={doc.titleDoc}
+                key={doc.titleDoc}
+                onClick={() => handleGetName(doc.urlDoc)}
+              />
+            ))}
+          </TreeItem>
+        </TreeView>
       ))}
-    </TreeView>
+    </div>
   );
 }

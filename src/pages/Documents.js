@@ -9,7 +9,7 @@ import '../index.css';
 const nameUnitDoc = {
   Savina300: [
     {
-      titleDoc: 'Savina Technical Manual',
+      titleDoc: 'Savina300 Technical Manual',
       urlDoc: savina300
     }
   ],
@@ -22,16 +22,24 @@ const nameUnitDoc = {
 };
 
 function Documents() {
+  const [urlDoc, setUrlDoc] = useState('');
+
+  const handleGetName = (url) => {
+    setUrlDoc(url);
+  };
 
   return (
     <div className='document-pdfviewer'>
       <TreeViewDoc 
         nameUnitDoc={nameUnitDoc}
+        handleGetName={handleGetName}
       />
+     {urlDoc && 
      <PDFViewer
-      backend={PDFJSBackend}
-      src={savina300}
-     />
+        backend={PDFJSBackend}
+        src={urlDoc}
+      />
+      }
     </div>
   );
 }

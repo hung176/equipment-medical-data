@@ -7,7 +7,6 @@ import SavinaIcon from "../assets/savina.png";
 import Savina300Icon from "../assets/savina300.png";
 import CarinaIcon from "../assets/carina.png";
 import Evita4Icon from "../assets/evita4.png";
-import EvitaV300Icon from "../assets/evitav300.png";
 import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -44,10 +43,6 @@ function TabUnits(props) {
     {
       nameUnit: "Evita4",
       iconPath: Evita4Icon,
-    },
-    {
-      nameUnit: "EvitaV300",
-      iconPath: EvitaV300Icon,
     },
   ];
 
