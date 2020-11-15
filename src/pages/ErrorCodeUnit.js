@@ -32,6 +32,7 @@ function ErrorCodeUnit({ match, history }) {
 
   const columnsMobile = [
     { title: 'Error Code', field: 'errorcode', cellStyle: { color: "red" }},
+    { title: 'Error', field: 'error' },
     { title: 'Remedies', field: 'remedies' },
   ];
 

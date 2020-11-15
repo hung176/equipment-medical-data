@@ -1,45 +1,54 @@
 import React, { useState } from "react";
 import PDFViewer from '../component/PDFViewer';
-import PDFJSBackend from '../backends/pdfjs';
-import TreeViewDoc from '../component/TreeViewDocument';
-import savina300 from '../assets/pdfs/TD_Savina_300.pdf';
-import evita4 from '../assets/pdfs/TD_Evita_4.pdf';
+import ListNameDoc from '../component/ListNameDoc';
+import ListDocMobile from '../component/ListDocMobile';
+import DocUrl from '../assets/pdfs';
 import '../index.css';
 
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+const { savina300, evita4 } = DocUrl;
 const nameUnitDoc = {
   Savina300: [
     {
-      titleDoc: 'Savina300 Technical Manual',
+      titleDoc: 'TD_Savina300',
       urlDoc: savina300
     }
   ],
   Eviata4: [
     {
-    titleDoc: 'Evita4 Technical Manual',
+    titleDoc: 'TD_Evita4',
     urlDoc: evita4
     }
   ],
 };
 
 function Documents() {
-  const [urlDoc, setUrlDoc] = useState('');
+  const [docUrl, setDocUrl] = useState(savina300);
 
-  const handleGetName = (url) => {
-    setUrlDoc(url);
-  };
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+
+  const handleDocUrl = (url) => {
+    setDocUrl(url);
+  }
 
   return (
     <div className='document-pdfviewer'>
-      <TreeViewDoc 
-        nameUnitDoc={nameUnitDoc}
-        handleGetName={handleGetName}
+      {isMobile ? (
+      <div>
+        <ListDocMobile />
+      </div>
+      ) : (
+          <ListNameDoc 
+            nameUnitDoc={nameUnitDoc}
+            handleDocUrl={handleDocUrl}
+          />
+      )}
+      <PDFViewer 
+        docUrl={docUrl}
       />
-     {urlDoc && 
-     <PDFViewer
-        backend={PDFJSBackend}
-        src={urlDoc}
-      />
-      }
     </div>
   );
 }
