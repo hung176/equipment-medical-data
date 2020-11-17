@@ -38,7 +38,9 @@ function Documents() {
     <div className='document-pdfviewer'>
       {isMobile ? (
       <div>
-        <ListDocMobile />
+        <ListDocMobile 
+          nameUnitDoc={nameUnitDoc}
+        />
       </div>
       ) : (
           <ListNameDoc 

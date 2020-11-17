@@ -51,7 +51,7 @@ export default function ListNameDoc({ nameUnitDoc, handleDocUrl }) {
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         {nameUnitDoc[unit].map(detail => (
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={open} timeout="auto" unmountOnExit key={detail.titleDoc}>
           <List component="div" disablePadding>
             <ListItem
               button 
